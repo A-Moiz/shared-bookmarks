@@ -15,8 +15,21 @@ bookmarkForm.addEventListener("submit", formSubmission);
 
 // Run on launch
 function init() {
+  createOptions();
   renderData();
 }
+
+// Create options out of User IDs
+function createOptions() {
+  const users = getUserIds();
+  users.forEach((id) => {
+    const option = document.createElement("option");
+    option.value = id;
+    option.textContent = `User: ${id}`;
+    userSelect.appendChild(option);
+  });
+}
+
 
 // Class for Bookmark object
 class Bookmark {
@@ -127,3 +140,6 @@ function renderData() {
     bookmarkList.appendChild(div);
   });
 }
+
+// Initialize the app
+init();
