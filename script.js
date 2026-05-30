@@ -45,3 +45,14 @@ function constructorValidation(url, title, description) {
     description: description.trim(),
   };
 }
+
+// Create options out of User IDs
+function createOptions() {
+  const users = getUserIds();
+  users.forEach((id) => {
+    const option = document.createElement("option");
+    option.value = id;
+    option.textContent = `User: ${id}`;
+    userSelect.appendChild(option);
+  });
+}
