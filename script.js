@@ -108,38 +108,44 @@ function renderData() {
   }
 
   bookmarks.forEach((bookmark) => {
-    const div = document.createElement("div");
-    div.innerHTML = `
+    createBookmarkContent(bookmark);
+  });
+}
+
+// Each bookmark content
+function createBookmarkContent(bookmark) {
+  const div = document.createElement("div");
+  div.innerHTML = `
       <h3><a href="${bookmark.url}">${bookmark.title}</a></h3>
       <p>${bookmark.description}</p>
       <small>Saved on: ${new Date(bookmark.timestamp).toLocaleString()}</small>
     `;
 
-    const copyBtn = document.createElement("button");
-    copyBtn.textContent = "Copy to clipboard";
-    copyBtn.setAttribute("aria-label", `Copy URL for ${bookmark.title}`);
-    copyBtn.addEventListener("click", () =>
-      navigator.clipboard.writeText(bookmark.url),
-    );
+  const copyBtn = document.createElement("button");
+  copyBtn.textContent = "Copy to clipboard";
+  copyBtn.setAttribute("aria-label", `Copy URL for ${bookmark.title}`);
+  copyBtn.addEventListener("click", () =>
+    navigator.clipboard.writeText(bookmark.url),
+  );
 
-    const likeBtn = document.createElement("button");
-    likeBtn.textContent = `Likes: ${bookmark.likes}`;
-    likeBtn.setAttribute(
-      "aria-label",
-      `Like ${bookmark.title}, currently ${bookmark.likes} likes`,
-    );
-    likeBtn.addEventListener("click", () => {
-      const allBookmarks = getData(selectedUser);
-      const target = allBookmarks.find((b) => b.id === bookmark.id);
-      target.likes += 1;
-      setData(selectedUser, allBookmarks);
-      renderData();
-    });
+  const likeBtn = document.createElement("button");
+  likeBtn.textContent = `Likes: ${bookmark.likes}`;
+  likeBtn.setAttribute(
+    "aria-label",
+    `Like ${bookmark.title}, currently ${bookmark.likes} likes`,
+  );
 
-    div.appendChild(copyBtn);
-    div.appendChild(likeBtn);
-    bookmarkList.appendChild(div);
+  likeBtn.addEventListener("click", () => {
+    const allBookmarks = getData(selectedUser);
+    const target = allBookmarks.find((b) => b.id === bookmark.id);
+    target.likes += 1;
+    setData(selectedUser, allBookmarks);
+    renderData();
   });
+
+  div.appendChild(copyBtn);
+  div.appendChild(likeBtn);
+  bookmarkList.appendChild(div);
 }
 
 // Delete all data
