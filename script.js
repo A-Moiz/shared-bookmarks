@@ -9,9 +9,11 @@ import { getUserIds, getData, setData, clearData } from "./storage.js";
 const userSelect = document.getElementById("user-select");
 const bookmarkForm = document.getElementById("bookmark-form");
 const bookmarkList = document.getElementById("bookmark-list");
+const deleteData = document.getElementById("delete-data");
 
 userSelect.addEventListener("change", renderData);
 bookmarkForm.addEventListener("submit", formSubmission);
+deleteData.addEventListener("click", clearUserData);
 
 // Run on launch
 function init() {
@@ -29,7 +31,6 @@ function createOptions() {
     userSelect.appendChild(option);
   });
 }
-
 
 // Class for Bookmark object
 class Bookmark {
@@ -139,6 +140,13 @@ function renderData() {
     div.appendChild(likeBtn);
     bookmarkList.appendChild(div);
   });
+}
+
+// Delete all data
+function clearUserData() {
+  const userID = userSelect.value;
+  clearData(userID);
+  renderData();
 }
 
 // Initialize the app
