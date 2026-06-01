@@ -1,9 +1,4 @@
-// This is a placeholder file which shows how you can access functions defined in other files.
-// It can be loaded into index.html.
-// You can delete the contents of the file once you have understood how it works.
-// Note that when running locally, in order to open a web page which uses modules, you must serve the directory over HTTP e.g. with https://www.npmjs.com/package/http-server
-// You can't open the index.html file using a file:// URL.
-
+// All imports
 import { getUserIds, getData, setData, clearData } from "./storage.js";
 
 // Validating constructor arguments
@@ -41,7 +36,8 @@ class Bookmark {
   }
 }
 
-// Wrapping all DOM-related code in if block so it only runs in a browser context and not interfere with tests
+// Wrapping all DOM-related code in if block so it only runs in a
+// browser context and not interfere with tests since Node has no DOM
 if (typeof document !== "undefined") {
   const userSelect = document.getElementById("user-select");
   const bookmarkForm = document.getElementById("bookmark-form");
@@ -157,5 +153,6 @@ if (typeof document !== "undefined") {
     renderData();
   }
 
+  // Calling init function
   init();
 }
