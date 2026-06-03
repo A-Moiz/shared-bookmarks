@@ -16,11 +16,11 @@ Tested manually by selecting a user with no saved bookmarks and checking that th
 
 ### The list of bookmarks is shown in reverse chronological order
 
-Tested with unit tests in `example.test.js`.
+Tested manually by adding more than one bookmark for the same user and checking that the newest bookmark appears at the top of the list.
 
 ### Each bookmark has a title, description and created at timestamp displayed
 
-Tested manually by creating a bookmark and checking that the title, description and saved date are displayed.
+Tested manually by creating a bookmark and checking that the title, description, and saved date are displayed.
 
 ### Each bookmark’s title is a link to the bookmark’s URL
 
@@ -28,15 +28,15 @@ Tested manually by creating a bookmark and checking that the title is clickable 
 
 ### Each bookmark's "Copy to clipboard" button copies the URL
 
-Tested manually by clicking the copy button and pasting the result into a text field.
+Tested manually by clicking the copy button and pasting the copied URL into a text field.
 
 ### Each bookmark's like counter works independently, and persists data across sessions
 
-Tested manually by liking one bookmark, refreshing the page, selecting the same user again, and checking that the like count stayed updated. Also tested the like logic with unit tests in `example.test.js`.
+Tested manually by creating more than one bookmark, clicking like on only one of them, refreshing the page, and checking that only that bookmark's like count stayed updated.
 
 ### The website contains a form with inputs for a URL, a title, and a description
 
-Tested manually by checking the form has labelled URL, title and description fields, plus a submit button.
+Tested manually by checking that the form has labelled URL, title, and description fields, plus a submit button.
 
 ### Submitting the form adds a new bookmark for the relevant user only
 
@@ -52,7 +52,7 @@ Tested manually using Lighthouse Snapshot mode.
 
 ### Unit tests are written for at least one non-trivial function
 
-Tested with unit tests in `example.test.js`.
+Tested with unit tests in `example.test.js`. The tests check that form values are trimmed and that validation handles empty URL, title, and description fields.
 
 ## Running tests
 
