@@ -1,46 +1,50 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shared Bookmarks</title>
     <script type="module" src="./script.js" defer></script>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./style.css">
   </head>
+
   <body>
     <h1>Shared Bookmarks</h1>
 
     <main>
       <div class="select-user">
-      <label for="user-select">Select User:</label>
-      <select id="user-select"></select>
-    </div>
+        <label for="user-select">Select User:</label>
+        <select id="user-select"></select>
+      </div>
 
-    <section id="add-bookmark">
-      <h2>Add a new bookmark</h2>
-      <form id="bookmark-form">
-        <div>
-          <label for="bookmark-url">URL:</label>
-          <input id="bookmark-url" type="url" required></input>
-        </div>
+      <section id="add-bookmark">
+        <h2>Add a new bookmark</h2>
 
-        <div>
-          <label for="bookmark-title">Title:</label>
-          <input id="bookmark-title" type="text" required></input>
-        </div>
+        <form id="bookmark-form">
+          <div>
+            <label for="bookmark-url">URL:</label>
+            <input id="bookmark-url" type="url" required>
+          </div>
 
-        <div>
-          <label for="bookmark-description">Description:</label>
-          <textarea id="bookmark-description" required></textarea>
-        </div>
+          <div>
+            <label for="bookmark-title">Title:</label>
+            <input id="bookmark-title" type="text" required>
+          </div>
 
-        <button type="submit">Save Bookmark</button>
-      </form>
-    </section>
+          <div>
+            <label for="bookmark-description">Description:</label>
+            <textarea id="bookmark-description" required></textarea>
+          </div>
 
-    <section id="display-booksmarks">
-      <h2>Your Bookmarks</h2>
-      <button id="delete-data" type="reset">Remove Data</button>
-      <div id="bookmark-list"></div>
-    </section>
+          <button type="submit">Save Bookmark</button>
+        </form>
+      </section>
+
+      <section id="display-bookmarks">
+        <h2>Your Bookmarks</h2>
+        <button id="delete-data" type="button">Remove Data</button>
+        <div id="bookmark-list"></div>
+      </section>
     </main>
   </body>
 </html>
