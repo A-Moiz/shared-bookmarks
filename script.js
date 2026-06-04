@@ -22,6 +22,11 @@ export function constructorValidation(url, title, description) {
   };
 }
 
+// Sorting bookmarks function
+export function sortBookmarks(bookmarks) {
+  return [...bookmarks].sort((a, b) => b.timestamp - a.timestamp);
+}
+
 // Class for Bookmark object
 class Bookmark {
   constructor(id, url, title, description, timestamp, likes) {
@@ -94,9 +99,8 @@ if (typeof document !== "undefined") {
   // Rendering bookmarks
   function renderData() {
     const selectedUser = userSelect.value;
-    const bookmarks = (getData(selectedUser) || []).sort(
-      (a, b) => b.timestamp - a.timestamp,
-    );
+    const rawBookmarks = getData(selectedUser) || [];
+    const bookmarks = sortBookmarks(rawBookmarks);
 
     bookmarkList.innerHTML = "";
 
@@ -114,7 +118,7 @@ if (typeof document !== "undefined") {
   function createBookmarkContent(bookmark, selectedUser) {
     const div = document.createElement("div");
     div.innerHTML = `
-      <h3><a href="${bookmark.url}">${bookmark.title}</a></h3>
+      <h3><a href="${bookmark.url}" target="_blank">${bookmark.title}</a></h3>
       <p>${bookmark.description}</p>
       <small>Saved on: ${new Date(bookmark.timestamp).toLocaleString()}</small>
     `;
