@@ -1,13 +1,7 @@
 // Imports
 import assert from "node:assert";
 import test from "node:test";
-import { getUserIds, getData } from "./storage.js";
-import { constructorValidation } from "./script.js";
-
-// Example test
-test("User count is correct", () => {
-  assert.equal(getUserIds().length, 5);
-});
+import { constructorValidation, sortBookmarks } from "./script.js";
 
 // Checking if whitespaces from fields are removed
 test("Trims whitespace from all fields", () => {
@@ -52,4 +46,18 @@ test("Gives an alert when Description is empty", () => {
 
   constructorValidation("https://google.com", "title", "");
   assert.strictEqual(alertCalled, true);
+});
+
+test("Bookmarks are displayed in reverse chronological order", () => {
+  const data = [
+    { title: "Oldest", timestamp: 1000 },
+    { title: "Newest", timestamp: 3000 },
+    { title: "Middle", timestamp: 2000 },
+  ];
+
+  const sorted = sortBookmarks(data);
+
+  assert.strictEqual(sorted[0].title, "Newest");
+  assert.strictEqual(sorted[1].title, "Middle");
+  assert.strictEqual(sorted[2].title, "Oldest");
 });

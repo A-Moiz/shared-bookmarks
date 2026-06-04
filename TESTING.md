@@ -1,63 +1,79 @@
-# Testing
+# Shared Bookmark Testing
 
 ## Rubric testing checklist
 
-### The website contains a drop-down which lists five users
+### The website must contain a drop-down which lists five users
 
-The user can choose a user from the dropdown list at the top of the page. I tested this manually by opening the website and checking that the dropdown shows users 1, 2, 3, 4, and 5.
+This was achieved by appending each option with it's respective user number to the select tag from JS. This was tested by observing the live website and checking if there were 5 users as options in the drop-down.
 
-### Selecting a user displays the list of bookmarks for the relevant user
+---
 
-The user selects a user from the dropdown to see the bookmarks saved for that user. I tested this by selecting different users and checking that the bookmarks shown changed depending on the selected user.
+### Selecting a user must display the list of bookmarks for the relevant user
 
-### If there are no bookmarks for the selected user, a message is displayed
+Each bookmark is saved and fetched via local storage using the user's number as a key and returns bookmarks if present. This was tested by switching between users using the drop-down and checking if the bookmarks being displayed change with it.
 
-When a user has no saved bookmarks, the page shows a message saying there are no bookmarks for that user. I tested this by selecting a user with no saved bookmarks and checking that the empty message appeared.
+---
 
-### The list of bookmarks is shown in reverse chronological order
+### If there are no bookmarks for the selected user, a message is displayed to explain this
 
-When bookmarks are displayed, the newest bookmark should appear first. I tested this by adding more than one bookmark for the same user and checking that the newest bookmark appeared at the top of the list.
+This is achieve by checking the length of bookmarks and if it is 0 that implies it is empty or that there are no bookmarks saved for that user. If this is the case a message `(p tag)` is inserted into HTML. This was tested by selecting a user from the drop-down that has no bookmarks saved or clearing all bookmarks for a user.
+
+---
+
+### The list of bookmarks must be shown in reverse chronological order
+
+This was achieved by using the timestamps of each bookmark and sorting them accordingly and displaying the newest bookmarks on top. This was tested by adding multiple bookmarks to one user and checking if each new bookmark appears on top.
+
+---
 
 ### Each bookmark has a title, description and created at timestamp displayed
 
-After a bookmark is saved, the page shows the bookmark title, description, and the date and time it was created. I tested this manually by creating a bookmark and checking that all three pieces of information were displayed.
+This was achieved by creating a Bookmark class with these fields and using the object to display it's content into HTML. This was tested visually by checking if each bookmark has a title, description and creation date.
+
+---
 
 ### Each bookmark’s title is a link to the bookmark’s URL
 
-The user can click the bookmark title to open the saved URL. I tested this manually by creating a bookmark and checking that the title was clickable and opened the correct link.
+This was achieved by embedding each bookmark title with a link `(a tag)`. This was tested by clicking on each bookmark title and checking if it opened the correct page.
 
-### Each bookmark's "Copy to clipboard" button copies the URL
+---
 
-The user can click the "Copy to clipboard" button on a bookmark to copy its URL. I tested this by clicking the button and pasting the copied URL into a text field.
+### Each bookmark's "Copy to clipboard" button must copy the URL of the bookmark
+
+This was achieved by using `clipboard` from JavaScript's `navigator` object to write text to it, which essentially saves the bookmark url to the user's clipboard. This was tested by checking clipboard history before and after clicking the button to see if the link was copied.
+
+---
 
 ### Each bookmark's like counter works independently, and persists data across sessions
 
-The user can click the like button on each bookmark, and only that bookmark's like count should increase. I tested this manually by creating more than one bookmark, liking only one of them, refreshing the page, and checking that only that bookmark's like count stayed updated.
+This was achieved by finding each bookmark via id and updating it's like counter and saving it back to local storage. This was tested by manually refreshing the page and checking if the like counter for a bookmark persisted.
 
-### The website contains a form with inputs for a URL, a title, and a description
+---
 
-The user can add a new bookmark using the form with URL, title, and description fields. I tested this by checking that the form had labelled inputs for URL, title, and description, plus a submit button.
+### The website must contain a form with inputs for a URL, a title, and a description. The form should have a submit button.
+
+This was achieved by adding a form within `index.html` with the relevant fields. This was tested by visually checking the website to see if the form fields were present.
+
+---
 
 ### Submitting the form adds a new bookmark for the relevant user only
 
-The user adds a bookmark while one user is selected, and the bookmark should only be saved for that selected user. I tested this by adding a bookmark for one user, switching to another user, and checking that the bookmark did not appear there.
+This was achieved by using the currently selected user as a key in local storage to assign the new bookmark with it's details from the form and calling the render function again to update the page. This was tested by adding multiple bookmarks to each user and checking if they were assigned correctly.
+
+---
 
 ### After creating a new bookmark, the list of bookmarks for the current user is shown, including the new bookmark
 
-After the form is submitted, the bookmark list updates straight away for the selected user. I tested this by submitting the form and checking that the new bookmark appeared immediately in the list.
+This is achieved by pushing the new bookmark to the user's bookmarks array and rendering the data again. This was tested by adding multiple bookmarks and checking if they were being added/displayed correctly for the current user.
 
-### The website scores 100 for accessibility in Lighthouse
+---
 
-The website should be accessible in every view, including when a user has bookmarks and when a user has no bookmarks. I tested this manually using Lighthouse Snapshot mode.
+### The website must score 100 for accessibility in Lighthouse
 
-### Unit tests are written for at least one non-trivial function
+I tested this manually using Lighthouse in Chrome dev tools.
 
-The project includes unit tests in `example.test.js`. I tested this by running `npm test`, which checks that form values are trimmed and that validation handles empty URL, title, and description fields.
+---
 
-## Running tests
+### Unit tests must be written for at least one non-trivial function
 
-Run:
-
-```bash
-npm i
-npm test
+Unit tests in `example.test.js`
